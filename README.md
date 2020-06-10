@@ -91,12 +91,18 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     }
 }
 ```
-First we are autowireing data source defined in application.properties (H2 database). Second, we are overriding configure method in which we said:
-Use HTTP basis - 
-authorizeRequests() - authorize every request
-antMatchers("…").access("hasRole(…)") - for specified endpoint (url) define who have access.
-anyRequest().authenticated() - authenticate every request.
+
+First we are autowireing data source defined in application.properties (H2 database). 
+Second, we are overriding configure method in which we said:
+- Use HTTP basis 
+
+- authorizeRequests() - authorize every request
+
+- antMatchers("…").access("hasRole(…)") - for specified endpoint (url) define who have access.
+
+- anyRequest().authenticated() - authenticate every request.
 
 Long story short - Everybody have access to /Stories , only ADMIN and WRITER roles have access to /NewStory and only ADMIN have access to /UserManaging.
+
 And third, we are also overriding configure method but now we said:
  "Authenticate provided credentials against defined data source."
