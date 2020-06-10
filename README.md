@@ -8,7 +8,7 @@ There is 4 important files in this project:
 3. data.sql
 4. ApplicationSecurity.java
 
-# Controller
+## Controller
 
 @RestController
 public class Controller {
@@ -33,42 +33,42 @@ public class Controller {
 It begins with @RestController and three endpoints /Stories, /NewStory and /UserManaging (like example in 1st part in Medium blog series #url ka medium-u#).
 These are Rest API endpoints that Front will be able to call using GET method. In this example it will return the string "its authenticated - name of endpoint"
 
-# Application Properties
+## Application Properties
 
 You should configure data source, in our example it's in-memory H2 database:
 
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
 
-# SQL Data
+## SQL Data
  
 In your resources folder create new file: data.sql
 put this code in it:
 
-create table users(
-	username varchar_ignorecase(50) not null primary key,
-	password varchar_ignorecase(200) not null,
-	enabled boolean not null
-);
-
-create table authorities (
-	username varchar_ignorecase(50) not null,
-	authority varchar_ignorecase(50) not null,
-	constraint fk_authorities_users foreign key(username) references users(username)
-);
-
-insert into users (username, password, enabled) values ('mike', '{noop}mike12', true);
-insert into authorities (username, authority) values ('mike', 'ROLE_ADMIN');
-
-insert into users (username, password, enabled) values ('ika', '{noop}ika12', true);
-insert into authorities (username, authority) values ('ika', 'ROLE_WRITER');
-
-insert into users (username, password, enabled) values ('tim', '{noop}tim12', true);
-insert into authorities (username, authority) values ('tim', 'ROLE_READER');
+> create table users(
+>	username varchar_ignorecase(50) not null primary key,
+>	password varchar_ignorecase(200) not null,
+>	enabled boolean not null
+> );
+>
+> create table authorities (
+>	username varchar_ignorecase(50) not null,
+>	authority varchar_ignorecase(50) not null,
+>	constraint fk_authorities_users foreign key(username) references users(username)
+> );
+>
+> insert into users (username, password, enabled) values ('mike', '{noop}mike12', true);
+> insert into authorities (username, authority) values ('mike', 'ROLE_ADMIN');
+>
+> insert into users (username, password, enabled) values ('ika', '{noop}ika12', true);
+> insert into authorities (username, authority) values ('ika', 'ROLE_WRITER');
+>
+> insert into users (username, password, enabled) values ('tim', '{noop}tim12', true);
+> insert into authorities (username, authority) values ('tim', 'ROLE_READER');
 
 If you are not familiar with SQL it will create 2 tables for you (users and authorities) and put some data in it.
 
-# Application Security
+## Application Security
 
 @Configuration
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
