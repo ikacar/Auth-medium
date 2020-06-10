@@ -9,7 +9,7 @@ There is 4 important files in this project:
 4. ApplicationSecurity.java
 
 ## Controller
-```
+```java
 @RestController
 public class Controller {
 
@@ -44,7 +44,7 @@ spring.datasource.driverClassName=org.h2.Driver
  
 In your resources folder create new file: data.sql
 put this code in it:
-```
+```sql
 create table users(
 	username varchar_ignorecase(50) not null primary key,
 	password varchar_ignorecase(200) not null,
@@ -69,7 +69,7 @@ insert into authorities (username, authority) values ('tim', 'ROLE_READER');
 If you are not familiar with SQL it will create 2 tables for you (users and authorities) and put some data in it.
 
 ## Application Security
-```
+```java
 @Configuration
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
